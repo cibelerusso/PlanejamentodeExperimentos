@@ -187,3 +187,11 @@ anova(mod)
 
 
 
+# Exemplo pilhas
+
+dados <- read.csv('https://raw.githubusercontent.com/cibelerusso/PlanejamentodeExperimentos/main/Dados/pilhas.csv', dec=',')
+dados
+
+mod <- lm(Y~A * B * C, data=dados)
+
+summary(mod)
