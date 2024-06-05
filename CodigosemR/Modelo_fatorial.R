@@ -8,9 +8,7 @@
 # A: máquina
 # B: operador
 
-
 # Entrada de dados
-
 
 dados <- read.csv('https://raw.githubusercontent.com/cibelerusso/PlanejamentodeExperimentos/main/Dados/tempo_execucao.csv')
 
@@ -20,7 +18,6 @@ dados <- read.csv('https://raw.githubusercontent.com/cibelerusso/PlanejamentodeE
 
 dados$A <- factor(dados$A)
 dados$B <- factor(dados$B)
-
 
 # Média geral
 
@@ -151,6 +148,7 @@ dados
 mod <- lm(Y ~ A * B * C, data=dados)
 
 summary(mod)
+
 # Análise dos resíduos
 
 plot(mod$residuals)
@@ -187,11 +185,73 @@ anova(mod)
 
 
 
-# Exemplo pilhas
+### Exemplo pilhas
 
 dados <- read.csv('https://raw.githubusercontent.com/cibelerusso/PlanejamentodeExperimentos/main/Dados/pilhas.csv', dec=',')
-dados
+#View(dados)
 
-mod <- lm(Y~A * B * C, data=dados)
+dados$A <- factor(dados$A)
+dados$B <- factor(dados$B)
+dados$C <- factor(dados$C)
 
+mod <- lm(Y ~ A * B * C, data=dados)
 summary(mod)
+
+anova(mod)
+
+
+# Tirando a interação de ordem 3
+
+mod <- lm(Y ~ A + B + C + A* B + A*C + B*C, data=dados)
+anova(mod)
+
+
+# Tirando a interação AB
+
+mod <- lm(Y ~ A + B + C  + A*C + B*C, data=dados)
+anova(mod)
+
+# Tirando a interação AC
+
+mod <- lm(Y ~ A + B + C  +  B*C, data=dados)
+anova(mod)
+
+
+# Tirando a interação BC
+
+mod <- lm(Y ~ A + B + C , data=dados)
+anova(mod)
+
+# Tirando o efeito principal de C: Modelo final somente com A e B
+
+mod <- lm(Y ~ A + B  , data=dados)
+summary(mod)
+anova(mod)
+
+
+# Análise dos resíduos
+
+plot(mod$residuals, pch=16)
+res <- rstudent(mod)
+
+# Análise gráfica
+
+par(mfrow=c(1,2),pty="s")
+
+plot(fitted(mod),residuals(mod),pch=19,col="blue")
+#identify(fitted(mod),residuals(mod))
+
+abline(h=0,col="red")
+
+qqnorm(res,col="blue",pch=19)
+qqline(res)
+
+
+# Half-normal plot
+
+par(mfrow=c(1,2))
+library(hnp)
+# half-normal plot with simulated envelope
+hnp(mod)
+# normal plot with simulated envelope
+hnp(mod, half = F)
