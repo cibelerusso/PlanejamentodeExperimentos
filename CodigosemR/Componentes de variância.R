@@ -22,7 +22,7 @@ sigma_residual <- 2
 A <- as.factor(rep(1:a, each = b  * replicas))
 B <- as.factor(rep(rep(1:b, each = replicas), times = a))
 
-efeito_aleatorio_B <- rnorm(n_niveis_B, mean = 0, sd = sigma_aleatorio_B)
+efeito_aleatorio_B <- rnorm(b, mean = 0, sd = sigma_aleatorio_B)
 efeito_aleatorio_B <- rep(efeito_aleatorio_B, each = replicas, times = a)
 
 erro <- rnorm(a * b * replicas, mean = 0, sd = sigma_residual)
