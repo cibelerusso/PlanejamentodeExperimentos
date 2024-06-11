@@ -17,7 +17,10 @@ dados$Filtro <- factor(dados$Filtro)
 dados$Desordem.no.solo <- factor(dados$Desordem.no.solo)
 dados$Operador <- factor(dados$Operador)
 
-dados$Intensidade.na.detecção
+# Visualização dos dados
+boxplot(Intensidade.na.detecção ~ Filtro, data = dados, main = "Intensidade na Detecção por Tipo de Filtro")
+boxplot(Intensidade.na.detecção ~ Desordem.no.solo, data = dados, main = "Intensidade na Detecção por Desordem no Solo")
+
 
 # Modelo fatorial
 
@@ -61,10 +64,19 @@ dados$Desordem.no.solo <- factor(dados$Desordem.no.solo)
 dados$Operador <- factor(dados$Operador)
 dados$Dia <- factor(dados$Dia)
 
+
+
+# Visualização dos dados
+boxplot(Intensidade.na.detecção ~ Tipo.de.filtro, data = dados, main = "Intensidade na Detecção por Tipo de Filtro")
+boxplot(Intensidade.na.detecção ~ Desordem.no.solo, data = dados, main = "Intensidade na Detecção por Desordem no Solo")
+
+
+
 # Modelo fatorial
 
 mod <- lme(fixed = Intensidade.na.detecção ~ Tipo.de.filtro * Desordem.no.solo, random = ~ 1 | Operador/Dia, data = dados)
 summary(mod)
+
 
 # Resíduos vs Valores Ajustados
 plot(fitted(mod), residuals(mod), pch=19, col="blue", main="Resíduos vs Ajustados")
