@@ -1,0 +1,25 @@
+Operador,Filtro,Desordem no solo,Intensidade na detecção
+1,1,Baixo,90
+1,1,Médio,102
+1,1,Alto,114
+1,2,Baixo,86
+1,2,Médio,87
+1,2,Alto,93
+2,1,Baixo,96
+2,1,Médio,106
+2,1,Alto,112
+2,2,Baixo,84
+2,2,Médio,90
+2,2,Alto,91
+3,1,Baixo,100
+3,1,Médio,105
+3,1,Alto,108
+3,2,Baixo,92
+3,2,Médio,97
+3,2,Alto,95
+4,1,Baixo,92
+4,1,Médio,96
+4,1,Alto,98
+4,2,Baixo,81
+4,2,Médio,80
+4,2,Alto,83
